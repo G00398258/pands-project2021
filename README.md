@@ -11,11 +11,12 @@ Records were recorded under 5 attributes - Petal Length, Petal Width, Sepal Leng
 The data set is also known as Anderson's Iris data set, as the data was collected by Edgar Anderson and not Fischer himself, as well as the Iris flower dataset.  
 
 
-**Project Progression**
+**Project Progression**  
 Spent some time researching how to import the dataset by column name and learned I needed the pandas module to do this.  
 
 **References:**
 https://stackoverflow.com/questions/26063231/read-specific-columns-with-pandas-or-other-python-module  
+https://stackoverflow.com/questions/31037298/pandas-get-column-average-mean
 https://towardsdatascience.com/the-iris-dataset-a-little-bit-of-history-and-biology-fb4812f5a7b5  
 https://www.kaggle.com/arshid/iris-flower-dataset  
 https://www.w3resource.com/python-exercises/csv/python-csv-exercise-7.php  
