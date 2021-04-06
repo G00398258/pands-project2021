@@ -14,7 +14,7 @@ import pandas as pd
 -- Iris Setosa
 -- Iris Versicolour
 -- Iris Virginica
-'''
+
 
 fields = ['sepallength','sepalwidth','petallength','petalwidth','class'] # these are the column names
 
@@ -28,4 +28,27 @@ print ('The mean sepal length is ',df['sepallength'].mean())
 print ('The mean sepal width is ',df['sepalwidth'].mean())
 print ('The mean petal length is ',df['petallength'].mean())
 print ('The mean petal length is ',df['petalwidth'].mean())
+
+print (df.describe())
+'''
+
+df = pd.read_csv("irisdata.csv", header=None)
+# Apply column names on the csv file
+df.to_csv("irisdata.csv", header=["sepal_length", "sepal_width", "petal_length", "petal_width", "class"], index=False)
+# Read in the data again with the new column names now added
+df = pd.read_csv("irisdata.csv")
+
+print ("General Statistics: ", df.describe())
+print ("First 5 Rows: ", df.head(5))
+print ("Last 5 Rows: ", df.tail(5))
+print ("Shape of Dataset (rows, columns): ", df.shape)
+print (df['class'].value_counts())
+
+print ("Dataset for Class: Iris-setosa")
+print (df.loc[df["class"] == "Iris-setosa"])
+print ("Dataset for Class: Iris-versicolor")
+print (df.loc[df["class"] == "Iris-versicolor"])
+print ("Dataset for Class: Iris-virginica")
+print (df.loc[df["class"] == "Iris-virginica"])
+
 
