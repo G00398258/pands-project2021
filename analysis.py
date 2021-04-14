@@ -35,14 +35,15 @@ print (df.describe())
 df = pd.read_csv("irisdata.csv", header=None)
 # Apply column names on the csv file
 df.to_csv("irisdata.csv", header=["sepal_length", "sepal_width", "petal_length", "petal_width", "class"], index=False)
-# Read in the data again with the new column names now added
+#Read in the data again with the new column names now added
 df = pd.read_csv("irisdata.csv")
+
 
 print ("General Statistics: ", df.describe())
 print ("First 5 Rows: ", df.head(5))
 print ("Last 5 Rows: ", df.tail(5))
 print ("Shape of Dataset (rows, columns): ", df.shape)
-print (df['class'].value_counts())
+print (df["class"].value_counts())
 
 print ("Dataset for Class: Iris-setosa")
 print (df.loc[df["class"] == "Iris-setosa"])
@@ -50,5 +51,20 @@ print ("Dataset for Class: Iris-versicolor")
 print (df.loc[df["class"] == "Iris-versicolor"])
 print ("Dataset for Class: Iris-virginica")
 print (df.loc[df["class"] == "Iris-virginica"])
+
+print("Covariance: ", df.cov()) #Ref: http://www.cse.msu.edu/~ptan/dmbook/tutorials/tutorial3/tutorial3.html
+print("Correlation: ", df.corr()) #Ref: http://www.cse.msu.edu/~ptan/dmbook/tutorials/tutorial3/tutorial3.html
+
+maxsepallength = df['sepal_length'].max()
+maxsepalwidth = df['sepal_width'].max()
+maxpetallength = df['petal_length'].max()
+maxpetalwidth = df['petal_width'].max()
+minsepallength = df['sepal_length'].min()
+minsepalwidth = df['sepal_width'].min()
+minpetallength = df['petal_length'].min()
+minpetalwidth = df['petal_width'].min()
+
+print ("Max sepal length & corresponding data:")
+print (df.loc[df["sepal_length"] == maxsepallength])
 
 
