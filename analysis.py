@@ -60,16 +60,6 @@ def summary():
     minpetallength = df['petal_length'].min()
     minpetalwidth = df['petal_width'].min()
 
-    modesepallength = df['sepal_length'].mode()
-    modesepalwidth = df['sepal_width'].mode()
-    modepetallength = df['petal_length'].mode()
-    modepetalwidth = df['petal_width'].mode()
-
-    mediansepallength = df['sepal_length'].median()
-    mediansepalwidth = df['sepal_width'].median()
-    medianpetallength = df['petal_length'].median()
-    medianpetalwidth = df['petal_width'].median()
-
     # More specific analysis
     # Min, Max & Median values of each attribute by class
     print ("Min values for each attribute by Class: ")
@@ -126,29 +116,8 @@ def summary():
     sys.stdout = original_stdout # switching the print output back to the terminal
     return print ("Analysis has been completed. Please see file summary.csv")
 
-''' Mode
-print ("Mode of Sepal Length: ", modesepallength)
-print ("Corresponding Index & Class:")
-print (df.loc[df["sepal_length"] == modesepallength,"class"])
-print("\n")
-print ("Mode of Sepal Width: ", modesepalwidth)
-print ("Corresponding Index & Class:")
-print (df.loc[df["sepal_width"] == modesepalwidth,"class"])
-print("\n")
-print ("Mode of Petal Length: ", modepetallength)
-print ("Corresponding Index & Class:")
-print (df.loc[df["petal_length"] == modepetallength,"class"])
-print("\n")
-print ("Mode of Petal Width: ", modepetalwidth)
-print ("Corresponding Index & Class:")
-print (df.loc[df["petal_width"] == modepetalwidth,"class"])
-print("\n")
-'''
-summary()
-
 def histograms():
     file = "dataforproject.csv"
-    variables = ["sepal_length", "sepal_width", "petal_length", "petal_width", "class"]
     df = pd.read_csv(file) 
     # Plot histogram for sepal_length
     sns.histplot(df, x="sepal_length", bins=30, hue="class")
@@ -178,30 +147,25 @@ def histograms():
     plt.title("Histogram of Variable: petal_width", size=16)
     # Save plot
     plt.savefig("petal_width_hist.png")
-    
-    '''sns.histplot(data=iris, x="sepal_length",hue="species")
-    iris = sns.load_dataset("iris")
-    sns.histplot(data=iris, x="sepal_width")
-    iris = sns.load_dataset("iris")
-    sns.histplot(data=iris, x="petal_length")
-    iris = sns.load_dataset("iris")
-    sns.histplot(data=iris, x="petal_width")'''
-    
-    #g = sns.PairGrid(iris, hue="species")
-    #.map_diag(sns.histplot)
-    #g.map_offdiag(sns.scatterplot)
-    #g.add_legend()
-    return print ("A histogram of each variable has been saved.")
+
+    return print ("A histogram of each variable has been saved")
 
 def scatterplots():
     file = "dataforproject.csv"
     variables = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
     df = pd.read_csv(file) 
-    g = sns.PairGrid(df, hue="class", vars=variables, height=3)
+    sns.set_style("ticks")
+    g = sns.PairGrid(df, hue="class", vars=variables)
     g.map(sns.scatterplot)
     g.add_legend()
+    # Code in for loop below copied from: https://stackoverflow.com/questions/30921164/seaborn-pairgrid-show-axes-tick-labels-for-each-subplot
+    for ax in g.axes.flat:
+        _ = plt.setp(ax.get_yticklabels(), visible=True)
+        _ = plt.setp(ax.get_xticklabels(), visible=True)
     plt.savefig("scatter_plots.png")
+
     return print ("A scatter plot of each pair of variables has been saved. See scatter_plots.png")
 
+summary()
 histograms()
 scatterplots()
