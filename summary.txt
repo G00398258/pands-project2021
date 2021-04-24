@@ -32,9 +32,9 @@ Shape of Dataset (# rows, # columns):  (150, 5)
 
 
 Value Counts for each Class: 
- Iris-versicolor    50
+ Iris-setosa        50
 Iris-virginica     50
-Iris-setosa        50
+Iris-versicolor    50
 Name: class, dtype: int64
 
 

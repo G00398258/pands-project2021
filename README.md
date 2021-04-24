@@ -47,7 +47,7 @@ The histograms() function creates a dataframe by reading in the data on the data
 Using the seaborn & matplotlib modules, it plots a separate histogram for Sepal Length, Sepal Width, Petal Length & Petal Width using the hue "class", applies a legend and saves them as follows:  
 - sepal_length_hist.png  
 ![image](https://github.com/G00398258/pands-project2021/blob/main/sepal_length_hist.png)    
-- sepal_width_hist.png 
+- sepal_width_hist.png  
 ![image](https://github.com/G00398258/pands-project2021/blob/main/sepal_width_hist.png)   
 - petal_length_hist.png  
 ![image](https://github.com/G00398258/pands-project2021/blob/main/petal_length_hist.png)  
@@ -80,7 +80,7 @@ I have finished all of the analysis I want to do on the file and have the progra
 I spent some time researching seaborn to see if that might be a better module to use for my plots. I came across the PairGrid & pairplot functions, and I think these could be very useful for the scatter plots required.  
 I also used seaborn to create and save four histograms of each attribute.  
 
-**References:** 
+**References:**  
 Please note that any code copied directly from another source has been referenced in my code.  
 The below list of references includes any such cases, as well as all other sources engaged with or researched in the course of completing this project.  
  
