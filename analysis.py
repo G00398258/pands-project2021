@@ -1,4 +1,6 @@
-import numpy as n
+# Code for the PANDS Project
+# Author: Gillian Kane-McLoughlin
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import sys
@@ -8,21 +10,21 @@ import seaborn as sns
 file = "dataforproject.csv"
 # Copying data from raw dataset to a new file, as I will be adding columns names and an index later on
 shutil.copyfile("iris.data", "dataforproject.csv") # https://stackabuse.com/how-to-copy-a-file-in-python/
-
+# reading in the data on this new file to create an intial dataframe
 df = pd.read_csv(file, header=None) 
 # Adding column names on the csv file
 df.to_csv(file, header=["sepal_length", "sepal_width", "petal_length", "petal_width", "class"])
 
-# Summary function
+# Summary function - this will output a summary of each variable to a file called summary.txt
 def summary():
     file = "dataforproject.csv"
     original_stdout = sys.stdout # https://stackabuse.com/writing-to-a-file-with-pythons-print-function/
     # reading in the data within the function & setting the index column so I don't get an unnamed column in my output (lecture on pandas helped here!)
     df = pd.read_csv(file, index_col=0) 
-    f = open("summary.csv", "a")
-    sys.stdout = f # this will output print commands to the analysis.csv file (f)
+    f = open("summary.txt", "a")
+    sys.stdout = f # this will output print commands to the summary.txt file (f)
 
-    # General summary points: describe, head, tail, shape, value counts, covairance & correlation 
+    # General summary points: describe, head, tail, shape, value counts, covairance & correlation functions
     print ("General Statistics: \n", df.describe())
     print("\n") # adding an empty line between each data point to make it look and read a bit better
     print ("First 5 Rows: \n", df.head(5))
@@ -37,20 +39,8 @@ def summary():
     print("\n")
     print("Correlation: \n", df.corr()) 
     print("\n")
-    '''I was going to have the program print out the dataset by each class, but decided this would be a bit overkill
-    print ("Dataset for Class: Iris-setosa")
-    print (df.loc[df["class"] == "Iris-setosa"])
-    print("\n")
-    print ("Dataset for Class: Iris-versicolor")
-    print (df.loc[df["class"] == "Iris-versicolor"])
-    print("\n")
-    print ("Dataset for Class: Iris-virginica")
-    print (df.loc[df["class"] == "Iris-virginica"])
-    print("\n")
-    '''
     
-
-
+    # Setting some variables before I move onto some more specific analysis
     maxsepallength = df['sepal_length'].max()
     maxsepalwidth = df['sepal_width'].max()
     maxpetallength = df['petal_length'].max()
@@ -60,8 +50,7 @@ def summary():
     minpetallength = df['petal_length'].min()
     minpetalwidth = df['petal_width'].min()
 
-    # More specific analysis
-    # Min, Max & Median values of each attribute by class
+    # Print Min, Max & Median values of each attribute by class to the text file
     print ("Min values for each attribute by Class: ")
     minvalues = df.groupby('class').min()
     print (minvalues)
@@ -75,11 +64,13 @@ def summary():
     print (medianvalues)
     print("\n")
     print ("Mode of each attribute: ")
+
+    # Print the mode but only for the four measurement columns (not the index or class column)
     modevalues = df.mode(axis=0,numeric_only=True,dropna=True) # https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.mode.html
     print (modevalues)
     print("\n")
 
-    # Print out min/max value for each attribute & correspoting index position and class of flower
+    # Print out min/max value for each attribute & corresponding index position and class of flower
     print ("Largest Sepal Length: ", maxsepallength)
     print ("Index Position & Class of flower with largest Sepal Length:")
     print (df.loc[df["sepal_length"] == maxsepallength,"class"])
@@ -116,11 +107,12 @@ def summary():
     sys.stdout = original_stdout # switching the print output back to the terminal
     return print ("Analysis has been completed. Please see file summary.csv")
 
+# Histograms function - this will plot and save a histogram of each variable as a .png file
 def histograms():
     file = "dataforproject.csv"
     df = pd.read_csv(file) 
     # Plot histogram for sepal_length
-    sns.histplot(df, x="sepal_length", bins=30, hue="class")
+    sns.histplot(df, x="sepal_length", bins=30, hue="class") # the value for bins was decided through trial and error, 30 looked good to me!
     plt.xlabel("sepal length (cm)", size=12)
     plt.ylabel("") # leaving the y axis label blank
     plt.title("Histogram of Variable: sepal_length", size=16)
@@ -150,11 +142,14 @@ def histograms():
 
     return print ("A histogram of each variable has been saved")
 
+# Scatterplots function - this will plot and save a scatterplot for all 16 pairs of variables
+# The project instructions did not specify if the scatterplots needed to be on separate files, so I went with the PairGrid approach
 def scatterplots():
     file = "dataforproject.csv"
+    # Creating a list of the variables I want to use in the scatterplots (as I don't want index & class):
     variables = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
     df = pd.read_csv(file) 
-    sns.set_style("ticks")
+    sns.set_style("ticks") # changing the theme to ticks
     g = sns.PairGrid(df, hue="class", vars=variables)
     g.map(sns.scatterplot)
     g.add_legend()
