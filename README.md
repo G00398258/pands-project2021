@@ -10,8 +10,11 @@ Fisher used a linear function to differentiate between the three different Iris 
 Records were recorded under 5 attributes - Petal Length, Petal Width, Sepal Length, Sepal Width and Class(Species).  
 The data set is also known as Anderson's Iris data set, as the data was collected by Edgar Anderson and not Fischer himself, as well as the Iris flower dataset.  
 
+**Data Source:**  
+The dataset used in this project was downloaded from: https://archive.ics.uci.edu/ml/datasets/iris  
+
 **What does this Program Do?**  
-The program begins by importing the following modules as per below:  
+The program begins by importing the following modules:  
 import numpy as n  
 import matplotlib.pyplot as plt  
 import pandas as pd  
@@ -19,31 +22,44 @@ import sys
 import shutil  
 import seaborn as sns  
 
-Using shutil, it then copies the data on the iris.data file to a new file named dataforproject.csv and creates a dataframe that reads in this data.  
+Using the shutil module, it then copies the data on the iris.data file to a new file named dataforproject.csv and creates a dataframe that reads in this data.  
 The program then adds the following column names to the new file: "sepal_length", "sepal_width", "petal_length", "petal_width", "class".  
 3 functions are then called by the program: summary(), histograms() & scatterplots()
+
+- **Summary Function**  
 The summary() function uses the sys module to change the standard output destination to a new file called summary.csv. It creates a dataframe by reading in the data on the dataforproject.csv file and adds an index.  
 It then writes some general statistics to the summary.csv file using the following functions: 
-describe()  
-head()  
-tail()  
-shape()  
-value_counts()  
-cov()  
-corr()  
+- describe(): produces statistics such as the count, mean, standard deviation, etc. for each variable  
+- head(): prints the first 5 rows of the dataset     
+- tail(): prints the last 5 rows of the dataset    
+- shape(): describes the shape of the dataset in terms or rows and columns    
+- value_counts(): lists the number of values per attribute (in this case "class")      
+- cov(): details the covariance between the attributes    
+- corr(): details the correlation between the attributes    
 
-The program then produces the min, max, and median values of each attribute by class, and the mode of the four measurement attributes.  
-Finally, the function prints out the min/max value for each attribute & corresponding index position and class of flower.  
+The function then produces the min, max, and median values of each attribute by class, and the mode of the four measurement attributes.  
+Finally, the function prints out the min & max value for each attribute & corresponding index position and class of flower for that value.  
 The sys module is called again to reset the standard output destination to the terminal.  
-The function returns "Analysis has been completed. Please see file summary.csv" when it has finished running.
+The function returns "Analysis has been completed. Please see file summary.csv" when it has finished running.  
 
+- **Histograms Function**  
 The histograms() function creates a dataframe by reading in the data on the dataforproject.csv file.  
-Using seaborn, it plots a separate histogram for Sepal Length, Sepal Width, Petal Length & Petal Width using the hue "class", applies a legend and saves the .png file.  
+Using the seaborn & matplotlib modules, it plots a separate histogram for Sepal Length, Sepal Width, Petal Length & Petal Width using the hue "class", applies a legend and saves them as follows:  
+- sepal_length_hist.png  
+![image](https://github.com/G00398258/pands-project2021/blob/main/sepal_length_hist.png)    
+- sepal_width_hist.png 
+![image](https://github.com/G00398258/pands-project2021/blob/main/sepal_width_hist.png)   
+- petal_length_hist.png  
+![image](https://github.com/G00398258/pands-project2021/blob/main/petal_length_hist.png)  
+- petal_width_hist.png  
+![image](https://github.com/G00398258/pands-project2021/blob/main/petal_width_hist.png)  
 The function returns "A histogram of each variable has been saved" when it has finished running.
 
+- **Scatterplots Function**  
 The scatterplots() function also creates a dataframe by reading in the data on the dataforproject.csv file.  
 It defines the variables to use in a list (Sepal Length, Sepal Width, Petal Length & Petal Width).   
-Using seaborn & the PairGrid function, it plots a scatter plot for each pair of variables (16 in total) on one .png file, applies labels, titles, and saves each histogram as a .png file. 
+Using the seaborn module & the PairGrid function, it plots a scatter plot for each pair of variables (16 in total) on one .png file, applies labels, titles, and saves the below file as scatter_plots.png:  
+![image](https://github.com/G00398258/pands-project2021/blob/main/scatter_plots.png)  
 The function returns "A scatter plot of each pair of variables has been saved. See scatter_plots.png" when it has finished running.  
 
 
@@ -64,9 +80,10 @@ I have finished all of the analysis I want to do on the file and have the progra
 I spent some time researching seaborn to see if that might be a better module to use for my plots. I came across the PairGrid & pairplot functions, and I think these could be very useful for the scatter plots required.  
 I also used seaborn to create and save four histograms of each attribute.  
 
-**Data Source:**  https://archive.ics.uci.edu/ml/datasets/iris 
-
-**References:**  
+**References:** 
+Please note that any code copied directly from another source has been referenced in my code.  
+The below list of references includes any such cases, as well as all other sources engaged with or researched in the course of completing this project.  
+ 
 https://datavizpyr.com/change-axis-labels-set-title-and-figure-size-to-plots-with-seaborn/  
 https://medium.com/@avulurivenkatasaireddy/exploratory-data-analysis-of-iris-data-set-using-python-823e54110d2d  
 https://medium.com/codebagng/basic-analysis-of-the-iris-data-set-using-python-2995618a6342  
