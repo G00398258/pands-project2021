@@ -11,9 +11,9 @@ Fisher’s Iris dataset contains records on the length and width measurements of
 *Image Source: Ref [1]*  
 
 The dataset was created by Sir Ronald Aylmer Fisher, a statistician and geneticist, and was first published in a report in 1936 entitled “The Use of Multiple Measurements in Taxonomic Problems” in the journal Annals of Eugenics.  
-The dataset is sometimes referred to as Anderson's Iris dataset, as the data was collected by Edgar Anderson and not Fischer himself, and is also known as the Iris flower dataset.  
+The dataset is sometimes referred to as Anderson's Iris dataset, as the data was collected by Edgar Anderson and not Fisher himself, and is also known as the Iris flower dataset.  
 Fisher used a linear function to differentiate between the three different Iris species mentioned above based on the morphology of their flowers. 150 samples are contained in the dataset, 50 from each of the three different species and the measurements were taken in centimetres.  
-The data was recorded under 4 measurement attributes - Petal Length, Petal Width, Sepal Length and Sepal Width - as well as by the Class(Species) of flower.    
+The data was recorded under 4 measurement attributes - Petal Length, Petal Width, Sepal Length and Sepal Width - as well as by the Class (or Species) of flower.    
 *Refs: [3],[4],[7],[20],[22]*  
 
 # **Data Source & Software Information:**  
@@ -30,13 +30,14 @@ The program begins by importing the following modules:
 *import shutil*  
 *import seaborn as sns*  
 
-Using the shutil module, the program copies the data on the iris.data file to a new file named dataforproject.csv and creates a dataframe that reads in this data (note: this was done as I ran the program several times over the course of completing the project, and wanted to be able to use the raw data file rather than the version of the file my code goes onto create, so anyone can run the code in the same way).  
-The program adds the following column names to the new file: "sepal_length", "sepal_width", "petal_length", "petal_width", "class". 
+Using the shutil module, the program copies the data on the iris.data file to a new file named dataforproject.csv and creates a dataframe that reads in this data (*note:* this was done as I ran the program several times over the course of completing the project, and wanted to be able to use the raw data file rather than the version of the file my code goes onto create, so anyone can run the code in the same way).  
+The program adds the following column names to the new file: "sepal_length", "sepal_width", "petal_length", "petal_width", "class".  
 3 functions are then called by the program: summary(), histograms() & scatterplots()  
 
 - **Summary Function**  
 The summary() function uses the sys module to change the standard output destination to a new file called summary.txt. It creates a dataframe by reading in the data on the dataforproject.csv file and adds an index, to avoid any issues with unnamed columns.  
 It then writes some general statistics to the summary.txt file using the following functions: 
+
 - describe(): produces statistics such as the count, mean, standard deviation, etc. for each variable  
 - head(5): prints the first 5 rows of the dataset     
 - tail(5): prints the last 5 rows of the dataset    
@@ -53,7 +54,8 @@ The function returns "Analysis has been completed. Please see file summary.csv" 
 
 - **Histograms Function**  
 The histograms() function also creates a dataframe by reading in the data on the dataforproject.csv file.  
-Using the seaborn & matplotlib modules, it plots a separate histogram for Sepal Length, Sepal Width, Petal Length & Petal Width using the hue "class", applies a legend and saves them as follows:  
+Using the seaborn & matplotlib modules, it plots a separate histogram for Sepal Length, Sepal Width, Petal Length & Petal Width using the hue "class", applies a legend and saves them as follows: 
+ 
 - sepal_length_hist.png  
 ![image](https://github.com/G00398258/pands-project2021/blob/main/sepal_length_hist.png)    
 - sepal_width_hist.png  
@@ -76,7 +78,7 @@ The function returns "A scatter plot of each pair of variables has been saved. S
 The above line is the last output of my code.   
 
 # **Conclusion**
-The analysis outputted to the summary.txt file (particularly the identification of the class of flower with the largest/smallest attributes) combined with the visuals of the plots produced by the code should help us to identify the different species of flower recorded in the dataset from eachother.  
+The analysis outputted to the summary.txt file (particularly the identification of the class of flower with the largest/smallest attributes) combined with the visuals of the plots produced by the code should help us to differtiate between the different species of flower recorded in the dataset from eachother.  
 Based on the results of this analysis, I have concluded the following:  
 With the exception of the measurements of Sepal Width, my analysis showed that the species Iris Virginica contained the flowers with the largest attribute measurements while the class Iris Setosa contained the flowers with the smallest, thus allowing us to differentiate between the classes of flower (to a certain extent).   
 
