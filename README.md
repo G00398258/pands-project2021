@@ -78,9 +78,10 @@ The function returns "A scatter plot of each pair of variables has been saved. S
 The above line is the last output of my code.   
 
 # **Conclusion**
-The analysis outputted to the summary.txt file (particularly the identification of the class of flower with the largest/smallest attributes) combined with the visuals of the plots produced by the code should help us to differtiate between the different species of flower recorded in the dataset from eachother.  
+The analysis outputted to the summary.txt file (particularly the identification of the class of flower with the largest/smallest attributes) combined with the visuals of the plots produced by the code should help us to differentiate between the different species of flower recorded in the dataset.
+
 Based on the results of this analysis, I have concluded the following:  
-With the exception of the measurements of Sepal Width, my analysis showed that the species Iris Virginica contained the flowers with the largest attribute measurements while the class Iris Setosa contained the flowers with the smallest, thus allowing us to differentiate between the classes of flower (to a certain extent).   
+With the exception of the measurements of Sepal Width, my analysis showed that the species Iris Virginica contained the flowers with the largest attribute measurements while the species Iris Setosa contained the flowers with the smallest, thus allowing us to differentiate between the classes of flower based on the measurements of Sepal Length, Petal Length & Petal Width.  
 
 
 # **References:**  
