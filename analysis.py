@@ -9,7 +9,7 @@ import seaborn as sns
 
 file = "dataforproject.csv"
 # Copying data from raw dataset to a new file, as I will be adding columns names and an index later on
-shutil.copyfile("iris.data", "dataforproject.csv") # https://stackabuse.com/how-to-copy-a-file-in-python/
+shutil.copyfile("iris.data", file)
 # reading in the data on this new file to create an intial dataframe
 df = pd.read_csv(file, header=None) 
 # Adding column names on the csv file
@@ -18,26 +18,29 @@ df.to_csv(file, header=["sepal_length", "sepal_width", "petal_length", "petal_wi
 # Summary function - this will output a summary of each variable to a file called summary.txt
 def summary():
     file = "dataforproject.csv"
-    original_stdout = sys.stdout # https://stackabuse.com/writing-to-a-file-with-pythons-print-function/
-    # reading in the data within the function & setting the index column so I don't get an unnamed column in my output (lecture on pandas helped here!)
+    original_stdout = sys.stdout # Code copied from: https://stackabuse.com/writing-to-a-file-with-pythons-print-function/
+    # Reading in the data within the function & setting the index column so I don't get an unnamed column in my output (lecture on pandas helped here!)
     df = pd.read_csv(file, index_col=0) 
     f = open("summary.txt", "a")
-    sys.stdout = f # this will output print commands to the summary.txt file (f)
+    sys.stdout = f # this will output print commands to the summary.txt file (which I have called f)
 
-    # General summary points: describe, head, tail, shape, value counts, covairance & correlation functions
+    print ("Iris Dataset Summary")
+    print("\n")
+
+    # General summary points: describe, head, tail, shape, value counts, covariance & correlation functions
     print ("General Statistics: \n", df.describe())
     print("\n") # adding an empty line between each data point to make it look and read a bit better
-    print ("First 5 Rows: \n", df.head(5))
+    print ("First 5 Rows of the Dataset: \n", df.head(5))
     print("\n")
-    print ("Last 5 Rows: \n", df.tail(5))
+    print ("Last 5 Rows of the Dataset: \n", df.tail(5))
     print("\n")
     print ("Shape of Dataset (# rows, # columns): ", df.shape)
     print("\n")
     print ("Value Counts for each Class: \n",df["class"].value_counts())
     print("\n")
-    print("Covariance: \n", df.cov())
+    print("Covariance Between the Attributes: \n", df.cov())
     print("\n")
-    print("Correlation: \n", df.corr()) 
+    print("Correlation Between the Attributes: \n", df.corr()) 
     print("\n")
     
     # Setting some variables before I move onto some more specific analysis
@@ -71,6 +74,7 @@ def summary():
     print("\n")
 
     # Print out min/max value for each attribute & corresponding index position and class of flower
+    # This will provide some more meaningful analysis & will help to distinguish the classes of flower from each other
     print ("Largest Sepal Length: ", maxsepallength)
     print ("Index Position & Class of flower with largest Sepal Length:")
     print (df.loc[df["sepal_length"] == maxsepallength,"class"])
@@ -104,7 +108,8 @@ def summary():
     print (df.loc[df["petal_width"] == minpetalwidth,"class"])
     print("\n")
 
-    sys.stdout = original_stdout # switching the print output back to the terminal
+    # Switching the print output back to the terminal
+    sys.stdout = original_stdout # Code copied from: https://stackabuse.com/writing-to-a-file-with-pythons-print-function/
     return print ("Analysis has been completed. Please see file summary.csv")
 
 # Histograms function - this will plot and save a histogram of each variable as a .png file
@@ -140,20 +145,20 @@ def histograms():
     # Save plot
     plt.savefig("petal_width_hist.png")
 
-    return print ("A histogram of each variable has been saved")
+    return print ("A histogram of each variable has been saved to the local folder as a .png file")
 
-# Scatterplots function - this will plot and save a scatterplot for all 16 pairs of variables
+# Scatterplots function - this will plot and save a scatterplot for all pairs of variables
 # The project instructions did not specify if the scatterplots needed to be on separate files, so I went with the PairGrid approach
 def scatterplots():
     file = "dataforproject.csv"
-    # Creating a list of the variables I want to use in the scatterplots (as I don't want index & class):
+    # Creating a list of the variables I want to use in the scatterplots (as I don't want to use index & class):
     variables = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
     df = pd.read_csv(file) 
     sns.set_style("ticks") # changing the theme to ticks
-    g = sns.PairGrid(df, hue="class", vars=variables)
+    g = sns.PairGrid(df, hue="class", vars=variables) # adapted from: https://seaborn.pydata.org/generated/seaborn.PairGrid.html
     g.map(sns.scatterplot)
     g.add_legend()
-    # Code in for loop below copied from: https://stackoverflow.com/questions/30921164/seaborn-pairgrid-show-axes-tick-labels-for-each-subplot
+    # Code in loop below copied from: https://stackoverflow.com/questions/30921164/seaborn-pairgrid-show-axes-tick-labels-for-each-subplot
     for ax in g.axes.flat:
         _ = plt.setp(ax.get_yticklabels(), visible=True)
         _ = plt.setp(ax.get_xticklabels(), visible=True)
