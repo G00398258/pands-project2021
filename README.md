@@ -47,7 +47,7 @@ It then writes some general statistics to the summary.txt file using the followi
 - corr(): details the correlation between the attributes    
 
 The function then produces the min, max, and median values of each attribute by class, and the mode of the four measurement attributes.  
-Finally, the function prints out the min & max value for each attribute & the corresponding index position and class of flower for that value.  
+Finally, the function sets a variable for the min and max value of each attribute. Using these variables and the loc function, it prints out the min & max value for each attribute & the corresponding index position and class of flower of that value.  
 
 The sys module is called again to reset the standard output destination to the terminal.  
 The function returns "Analysis has been completed. Please see file summary.csv" when it has finished running.  
